@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -41,14 +42,40 @@ export default function Home() {
     }
   }, [payments, mounted]);
 
+  // Función para formatear el número con comas mientras se escribe
+  const formatCurrencyInput = (value: string) => {
+    // Eliminar todo lo que no sea número o punto
+    const cleanValue = value.replace(/[^0-9.]/g, '');
+    const parts = cleanValue.split('.');
+    
+    // Formatear la parte entera con comas
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    
+    // Unir con la parte decimal si existe (solo permitimos un punto)
+    return parts.length > 2 ? parts[0] + '.' + parts[1] : parts.join('.');
+  };
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatCurrencyInput(e.target.value);
+    setAmount(formatted);
+  };
+
+  const handleEditAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formatted = formatCurrencyInput(e.target.value);
+    setEditAmount(formatted);
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!clientName.trim() || !amount) return;
 
+    // Limpiar comas para guardar como número puro
+    const numericAmount = parseFloat(amount.replace(/,/g, ''));
+
     const newPayment: Payment = {
       id: Math.random().toString(36).substr(2, 9),
       clientName: clientName.trim(),
-      amount: parseFloat(amount),
+      amount: numericAmount,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
     setPayments([...payments, newPayment]);
@@ -59,16 +86,19 @@ export default function Home() {
   const openEditDialog = (payment: Payment) => {
     setEditingPayment(payment);
     setEditClientName(payment.clientName);
-    setEditAmount(payment.amount.toString());
+    // Cargar con formato de comas
+    setEditAmount(payment.amount.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 2 }));
     setIsEditDialogOpen(true);
   };
 
   const handleUpdate = () => {
     if (!editingPayment || !editClientName.trim() || !editAmount) return;
 
+    const numericAmount = parseFloat(editAmount.replace(/,/g, ''));
+
     setPayments(payments.map(p => 
       p.id === editingPayment.id 
-        ? { ...p, clientName: editClientName.trim(), amount: parseFloat(editAmount) } 
+        ? { ...p, clientName: editClientName.trim(), amount: numericAmount } 
         : p
     ));
     setIsEditDialogOpen(false);
@@ -83,8 +113,8 @@ export default function Home() {
 
   const shareSummary = () => {
     const date = new Date().toLocaleDateString();
-    const list = payments.map(p => `- ${p.clientName}: $${p.amount.toFixed(2)}`).join('\n');
-    const text = `*CIERRE DE DÍA - ${date}*\n\n*Detalle de Cobros:*\n${list}\n\n*TOTAL DEL DÍA: $${totalAmount.toFixed(2)}*`;
+    const list = payments.map(p => `- ${p.clientName}: $${p.amount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}`).join('\n');
+    const text = `*CIERRE DE DÍA - ${date}*\n\n*Detalle de Cobros:*\n${list}\n\n*TOTAL DEL DÍA: $${totalAmount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}*`;
     const url = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(url, '_blank');
   };
@@ -140,15 +170,17 @@ export default function Home() {
                   <DollarSign className="w-5 h-5 text-primary" />
                   Monto Cobrado
                 </label>
-                <Input
-                  type="number"
-                  inputMode="decimal"
-                  placeholder="0.00"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="!text-8xl h-auto py-14 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
-                  required
-                />
+                <div className="relative">
+                  <Input
+                    type="text"
+                    inputMode="decimal"
+                    placeholder="0.00"
+                    value={amount}
+                    onChange={handleAmountChange}
+                    className="!text-8xl h-auto py-14 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
+                    required
+                  />
+                </div>
               </div>
               <Button type="submit" className="w-full h-auto py-12 text-4xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
                 Registrar Pago
@@ -209,7 +241,7 @@ export default function Home() {
                       </TableCell>
                       <TableCell className="py-10 text-right">
                         <span className="text-5xl font-black text-primary tabular-nums tracking-tighter drop-shadow-sm">
-                          ${p.amount.toFixed(2)}
+                          ${p.amount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                         </span>
                       </TableCell>
                       <TableCell className="py-10 pr-10 text-right no-print">
@@ -336,10 +368,10 @@ export default function Home() {
             <div className="space-y-4">
               <label className="text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Monto Correcto</label>
               <Input
-                type="number"
+                type="text"
                 inputMode="decimal"
                 value={editAmount}
-                onChange={(e) => setEditAmount(e.target.value)}
+                onChange={handleEditAmountChange}
                 className="!text-8xl h-auto py-12 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
               />
             </div>
