@@ -267,12 +267,12 @@ export default function Home() {
               </TableBody>
             </Table>
           </CardContent>
-          <CardFooter className="flex flex-col sm:flex-row gap-4 p-8 bg-muted/5 no-print border-t-2">
+          <CardFooter className="flex flex-col sm:flex-row gap-4 p-8 bg-muted/5 no-print border-t-2 justify-center">
             <Button 
               onClick={shareSummary} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="w-full py-10 border-2 border-primary/30 hover:border-primary hover:bg-primary/5 text-2xl font-black text-primary rounded-2xl uppercase"
+              className="w-full sm:w-auto py-10 px-8 border-2 border-primary/30 hover:border-primary hover:bg-primary/5 text-2xl font-black text-primary rounded-2xl uppercase flex items-center justify-center min-w-[240px]"
             >
               <Send className="w-7 h-7 mr-3" />
               Enviar a WhatsApp
@@ -281,7 +281,7 @@ export default function Home() {
               onClick={exportPDF} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="w-full py-10 border-2 border-accent/30 hover:border-accent hover:bg-accent/5 text-2xl font-black text-accent rounded-2xl uppercase"
+              className="w-full sm:w-auto py-10 px-8 border-2 border-accent/30 hover:border-accent hover:bg-accent/5 text-2xl font-black text-accent rounded-2xl uppercase flex items-center justify-center min-w-[240px]"
             >
               <FileText className="w-7 h-7 mr-3" />
               Generar Reporte
