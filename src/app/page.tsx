@@ -102,7 +102,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col items-center">
       <header className="w-full max-w-2xl mb-12 flex flex-col items-center text-center no-print">
-        <div className="bg-primary rounded-[2rem] p-6 mb-4 shadow-[0_20px_60px_-15px_rgba(168,85,247,0.5)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+        <div className="bg-primary rounded-[2rem] p-6 mb-4 shadow-[0_20px_60px_-15px_rgba(37,99,235,0.5)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
           <Wallet className="w-14 h-14 text-white" />
         </div>
         <h1 className="text-7xl font-black text-primary tracking-tighter uppercase italic leading-none drop-shadow-sm">Monto Fácil</h1>
@@ -162,7 +162,7 @@ export default function Home() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full py-14 text-3xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(168,85,247,0.4)] transition-all active:scale-95 uppercase tracking-widest">
+              <Button type="submit" className="w-full py-14 text-3xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
                 Registrar Pago
               </Button>
             </form>
@@ -170,8 +170,8 @@ export default function Home() {
           <div className="h-6 bg-accent/20"></div>
         </Card>
 
-        {/* Total Display - RECTIFIED COMPACTNESS */}
-        <Card className="bg-primary text-white overflow-hidden border-none shadow-[0_25px_60px_-15px_rgba(168,85,247,0.4)] relative rounded-[2.5rem]">
+        {/* Total Display */}
+        <Card className="bg-primary text-white overflow-hidden border-none shadow-[0_25px_60px_-15px_rgba(37,99,235,0.4)] relative rounded-[2.5rem]">
           <div className="absolute top-0 right-0 p-4 opacity-10 transform translate-x-4 -translate-y-4">
             <ReceiptText className="w-32 h-32" />
           </div>
