@@ -41,7 +41,6 @@ export default function Home() {
     }
   }, [payments, mounted]);
 
-  // Función para formatear el número con comas mientras se escribe
   const formatCurrencyInput = (value: string) => {
     const cleanValue = value.replace(/[^0-9.]/g, '');
     const parts = cleanValue.split('.');
@@ -123,43 +122,43 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col items-center">
-      <header className="w-full max-w-2xl mb-12 flex flex-col items-center text-center no-print">
-        <h1 className="text-7xl font-black text-primary tracking-tighter uppercase italic leading-none drop-shadow-sm">Monto Fácil</h1>
-        <div className="bg-accent px-6 py-2 rounded-full mt-4 shadow-lg shadow-accent/20">
-          <p className="text-accent-foreground text-sm font-black uppercase tracking-[0.2em] flex items-center gap-2">
-            <Sparkles className="w-4 h-4" />
+      <header className="w-full max-w-2xl mb-8 md:mb-12 flex flex-col items-center text-center no-print">
+        <h1 className="text-5xl md:text-7xl font-black text-primary tracking-tighter uppercase italic leading-none drop-shadow-sm">Monto Fácil</h1>
+        <div className="bg-accent px-4 py-1.5 md:px-6 md:py-2 rounded-full mt-4 shadow-lg shadow-accent/20">
+          <p className="text-accent-foreground text-[10px] md:text-sm font-black uppercase tracking-[0.2em] flex items-center gap-2">
+            <Sparkles className="w-3 h-3 md:w-4 h-4" />
             Control Financiero Total
           </p>
         </div>
       </header>
 
-      <main className="w-full max-w-2xl space-y-10">
-        {/* Input Form */}
-        <Card className="no-print border-none shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] bg-white rounded-[3rem] overflow-hidden">
-          <CardHeader className="bg-primary/5 border-b border-primary/5 py-8">
-            <CardTitle className="text-3xl font-black flex items-center gap-3 uppercase text-primary tracking-tight">
-              <Plus className="w-10 h-10 text-primary" />
+      <main className="w-full max-w-2xl space-y-6 md:space-y-10">
+        {/* Formulario de Entrada */}
+        <Card className="no-print border-none shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden">
+          <CardHeader className="bg-primary/5 border-b border-primary/5 py-6 md:py-8">
+            <CardTitle className="text-2xl md:text-3xl font-black flex items-center gap-3 uppercase text-primary tracking-tight">
+              <Plus className="w-8 h-8 md:w-10 h-10 text-primary" />
               Nuevo Registro
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-10 px-10">
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-10">
-              <div className="space-y-4">
-                <label className="text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
-                  <User className="w-5 h-5 text-primary" />
+          <CardContent className="pt-8 px-6 md:pt-10 md:px-10">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 md:gap-10">
+              <div className="space-y-3 md:space-y-4">
+                <label className="text-[10px] md:text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
+                  <User className="w-4 h-4 md:w-5 h-5 text-primary" />
                   Nombre del Cliente
                 </label>
                 <Input
                   placeholder="Ej. Juan Pérez"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                  className="!text-5xl h-auto py-12 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] placeholder:text-muted-foreground/20 font-black px-8 shadow-inner uppercase"
+                  className="!text-3xl md:!text-5xl h-auto py-8 md:py-12 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1rem] md:rounded-[1.5rem] placeholder:text-muted-foreground/20 font-black px-6 md:px-8 shadow-inner uppercase"
                   required
                 />
               </div>
-              <div className="space-y-4">
-                <label className="text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
-                  <DollarSign className="w-5 h-5 text-primary" />
+              <div className="space-y-3 md:space-y-4">
+                <label className="text-[10px] md:text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
+                  <DollarSign className="w-4 h-4 md:w-5 h-5 text-primary" />
                   Monto Cobrado
                 </label>
                 <div className="relative">
@@ -169,82 +168,82 @@ export default function Home() {
                     placeholder="0.00"
                     value={amount}
                     onChange={handleAmountChange}
-                    className="!text-8xl h-auto py-14 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
+                    className="!text-5xl md:!text-8xl h-auto py-10 md:py-14 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1rem] md:rounded-[1.5rem] font-black text-primary text-center px-6 md:px-8 shadow-inner"
                     required
                   />
                 </div>
               </div>
-              <Button type="submit" className="w-full h-auto py-12 text-4xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
+              <Button type="submit" className="w-full h-auto py-8 md:py-12 text-2xl md:text-4xl font-black rounded-[1rem] md:rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
                 Registrar Pago
               </Button>
             </form>
           </CardContent>
-          <div className="h-6 bg-accent/20"></div>
+          <div className="h-4 md:h-6 bg-accent/20"></div>
         </Card>
 
-        {/* Total Display */}
-        <Card className="bg-primary text-white overflow-hidden border-none shadow-[0_25px_60px_-15px_rgba(37,99,235,0.4)] relative rounded-[2.5rem]">
-          <CardContent className="p-6 text-center flex flex-col items-center relative z-10">
-            <span className="text-white/60 text-[10px] uppercase tracking-[0.4em] font-black mb-1">Total Recaudado Hoy</span>
-            <div className="text-7xl font-black tabular-nums tracking-tighter drop-shadow-2xl">
+        {/* Cuadro de Total */}
+        <Card className="bg-primary text-white overflow-hidden border-none shadow-[0_25px_60px_-15px_rgba(37,99,235,0.4)] relative rounded-[1.5rem] md:rounded-[2.5rem]">
+          <CardContent className="p-4 md:p-6 text-center flex flex-col items-center relative z-10">
+            <span className="text-white/60 text-[8px] md:text-[10px] uppercase tracking-[0.4em] font-black mb-1">Total Recaudado Hoy</span>
+            <div className="text-4xl md:text-7xl font-black tabular-nums tracking-tighter drop-shadow-2xl">
               ${totalAmount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
             </div>
-            <div className="mt-2 px-5 py-1 bg-accent/100 rounded-full text-accent-foreground text-xs font-black uppercase tracking-widest shadow-lg shadow-accent/20">
+            <div className="mt-2 px-4 py-1 bg-accent rounded-full text-accent-foreground text-[8px] md:text-xs font-black uppercase tracking-widest shadow-lg shadow-accent/20">
               {payments.length} Cobros registrados
             </div>
           </CardContent>
         </Card>
 
-        {/* Payment List Table */}
-        <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[3rem]">
-          <CardHeader className="border-b-2 border-secondary bg-secondary/30 py-8 px-10">
-            <CardTitle className="text-2xl font-black flex items-center gap-3 uppercase tracking-tight text-primary">
-              <ReceiptText className="w-8 h-8" />
+        {/* Historial de Cobros */}
+        <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2rem] md:rounded-[3rem]">
+          <CardHeader className="border-b-2 border-secondary bg-secondary/30 py-6 px-6 md:py-8 md:px-10">
+            <CardTitle className="text-xl md:text-2xl font-black flex items-center gap-3 uppercase tracking-tight text-primary">
+              <ReceiptText className="w-6 h-6 md:w-8 h-8" />
               Historial de Cobros
             </CardTitle>
           </CardHeader>
-          <CardContent className="p-0">
+          <CardContent className="p-0 overflow-x-auto">
             <Table>
               <TableHeader>
                 <TableRow className="hover:bg-transparent bg-secondary/40 border-b-2">
-                  <TableHead className="font-black text-xs py-6 pl-10 uppercase text-muted-foreground tracking-[0.2em]">Cliente</TableHead>
-                  <TableHead className="font-black text-xs py-6 text-right uppercase text-muted-foreground tracking-[0.2em]">Monto</TableHead>
-                  <TableHead className="font-black text-xs py-6 text-center pr-10 uppercase no-print text-muted-foreground tracking-[0.2em] w-36">Acción</TableHead>
+                  <TableHead className="font-black text-[10px] md:text-xs py-4 md:py-6 pl-6 md:pl-10 uppercase text-muted-foreground tracking-[0.2em]">Cliente</TableHead>
+                  <TableHead className="font-black text-[10px] md:text-xs py-4 md:py-6 text-right uppercase text-muted-foreground tracking-[0.2em]">Monto</TableHead>
+                  <TableHead className="font-black text-[10px] md:text-xs py-4 md:py-6 text-center pr-6 md:pr-10 uppercase no-print text-muted-foreground tracking-[0.2em] w-24 md:w-36">Acción</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {payments.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={3} className="h-80 text-center text-muted-foreground/30 text-3xl italic font-black uppercase">
+                    <TableCell colSpan={3} className="h-60 md:h-80 text-center text-muted-foreground/30 text-2xl md:text-3xl italic font-black uppercase">
                       Vacio
                     </TableCell>
                   </TableRow>
                 ) : (
                   payments.map((p) => (
                     <TableRow key={p.id} className="group transition-colors hover:bg-secondary/20 border-b-2 border-secondary/50">
-                      <TableCell className="py-10 pl-10">
+                      <TableCell className="py-6 md:py-10 pl-6 md:pl-10">
                         <div className="flex flex-col">
-                          <span className="text-2xl font-black text-foreground uppercase tracking-tight leading-none">{p.clientName}</span>
-                          <span className="text-sm text-primary font-bold mt-2 no-print opacity-80 flex items-center gap-1">
-                            <Sparkles className="w-4 h-4" />
+                          <span className="text-lg md:text-2xl font-black text-foreground uppercase tracking-tight leading-tight">{p.clientName}</span>
+                          <span className="text-[10px] md:text-sm text-primary font-bold mt-1 no-print opacity-80 flex items-center gap-1">
+                            <Sparkles className="w-3 h-3 md:w-4 h-4" />
                             {p.timestamp}
                           </span>
                         </div>
                       </TableCell>
-                      <TableCell className="py-10 text-right">
-                        <span className="text-5xl font-black text-primary tabular-nums tracking-tighter drop-shadow-sm">
+                      <TableCell className="py-6 md:py-10 text-right">
+                        <span className="text-2xl md:text-5xl font-black text-primary tabular-nums tracking-tighter drop-shadow-sm">
                           ${p.amount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
                         </span>
                       </TableCell>
-                      <TableCell className="py-10 pr-10 text-right no-print">
-                        <div className="flex justify-end gap-5">
+                      <TableCell className="py-6 md:py-10 pr-6 md:pr-10 text-right no-print">
+                        <div className="flex justify-end gap-2 md:gap-5">
                           <Button 
                             variant="ghost" 
                             size="icon" 
                             onClick={() => openEditDialog(p)}
-                            className="text-primary hover:bg-primary hover:text-white rounded-[1.2rem] h-16 w-16 border-4 border-primary/10 transition-all shadow-md active:scale-90"
+                            className="text-primary hover:bg-primary hover:text-white rounded-[0.8rem] md:rounded-[1.2rem] h-10 w-10 md:h-16 md:w-16 border-2 md:border-4 border-primary/10 transition-all shadow-md active:scale-90"
                           >
-                            <Pencil className="w-8 h-8" />
+                            <Pencil className="w-5 h-5 md:w-8 h-8" />
                           </Button>
                           
                           <AlertDialog>
@@ -252,24 +251,24 @@ export default function Home() {
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
-                                className="text-destructive hover:bg-destructive hover:text-white rounded-[1.2rem] h-16 w-16 border-4 border-destructive/10 transition-all shadow-md active:scale-90"
+                                className="text-destructive hover:bg-destructive hover:text-white rounded-[0.8rem] md:rounded-[1.2rem] h-10 w-10 md:h-16 md:w-16 border-2 md:border-4 border-destructive/10 transition-all shadow-md active:scale-90"
                               >
-                                <Trash2 className="w-8 h-8" />
+                                <Trash2 className="w-5 h-5 md:w-8 h-8" />
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="rounded-[4rem] border-none shadow-[0_40px_100px_-20px_rgba(239,68,68,0.3)] p-14">
+                            <AlertDialogContent className="rounded-[2rem] md:rounded-[4rem] border-none shadow-[0_40px_100px_-20px_rgba(239,68,68,0.3)] p-8 md:p-14 w-[90vw] md:w-full max-w-lg">
                               <AlertDialogHeader>
-                                <div className="mx-auto bg-destructive/10 p-8 rounded-full mb-8 w-fit">
-                                  <Trash2 className="w-16 h-16 text-destructive" />
+                                <div className="mx-auto bg-destructive/10 p-6 md:p-8 rounded-full mb-6 md:mb-8 w-fit">
+                                  <Trash2 className="w-10 h-10 md:w-16 md:w-16 text-destructive" />
                                 </div>
-                                <AlertDialogTitle className="text-4xl font-black text-center uppercase tracking-tighter">¿Borrar registro?</AlertDialogTitle>
-                                <AlertDialogDescription className="text-2xl text-center mt-4 font-medium">
+                                <AlertDialogTitle className="text-2xl md:text-4xl font-black text-center uppercase tracking-tighter">¿Borrar registro?</AlertDialogTitle>
+                                <AlertDialogDescription className="text-lg md:text-2xl text-center mt-4 font-medium">
                                   Vas a eliminar el cobro de <span className="font-black text-foreground underline decoration-destructive decoration-4">{p.clientName}</span>.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
-                              <AlertDialogFooter className="flex flex-col sm:flex-row gap-6 mt-14">
-                                <AlertDialogCancel className="py-10 rounded-[2rem] flex-1 border-4 text-2xl font-black uppercase transition-all hover:bg-secondary">Cancelar</AlertDialogCancel>
-                                <AlertDialogAction onClick={() => deletePayment(p.id)} className="py-10 rounded-[2rem] flex-1 bg-destructive hover:bg-destructive/90 text-2xl font-black uppercase shadow-2xl shadow-destructive/40">
+                              <AlertDialogFooter className="flex flex-col sm:flex-row gap-4 md:gap-6 mt-10 md:mt-14">
+                                <AlertDialogCancel className="py-6 md:py-10 rounded-[1rem] md:rounded-[2rem] flex-1 border-2 md:border-4 text-lg md:text-2xl font-black uppercase transition-all hover:bg-secondary">Cancelar</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deletePayment(p.id)} className="py-6 md:py-10 rounded-[1rem] md:rounded-[2rem] flex-1 bg-destructive hover:bg-destructive/90 text-lg md:text-2xl font-black uppercase shadow-2xl shadow-destructive/40">
                                   Eliminar
                                 </AlertDialogAction>
                               </AlertDialogFooter>
@@ -283,54 +282,54 @@ export default function Home() {
               </TableBody>
             </Table>
           </CardContent>
-          <CardFooter className="flex flex-col sm:flex-row gap-8 p-14 bg-secondary/10 no-print border-t-4 border-secondary/20 justify-center">
+          <CardFooter className="flex flex-col sm:flex-row gap-4 md:gap-8 p-8 md:p-14 bg-secondary/10 no-print border-t-4 border-secondary/20 justify-center">
             <Button 
               onClick={shareSummary} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="w-full sm:w-auto py-12 px-14 border-4 border-primary/20 hover:border-primary hover:bg-primary/5 text-3xl font-black text-primary rounded-[1.5rem] uppercase flex items-center justify-center min-w-[280px] shadow-2xl shadow-primary/5 transition-all active:scale-95"
+              className="w-full sm:w-auto py-8 md:py-12 px-8 md:px-14 border-2 md:border-4 border-primary/20 hover:border-primary hover:bg-primary/5 text-xl md:text-3xl font-black text-primary rounded-[1rem] md:rounded-[1.5rem] uppercase flex items-center justify-center min-w-full sm:min-w-[280px] shadow-2xl shadow-primary/5 transition-all active:scale-95"
             >
-              <Send className="w-10 h-10 mr-4" />
+              <Send className="w-8 h-8 md:w-10 h-10 mr-3 md:mr-4" />
               WhatsApp
             </Button>
             <Button 
               onClick={exportPDF} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="w-full sm:w-auto py-12 px-14 border-4 border-accent/40 hover:border-accent hover:bg-accent/5 text-3xl font-black text-accent-foreground rounded-[1.5rem] uppercase flex items-center justify-center min-w-[280px] shadow-2xl shadow-accent/5 transition-all active:scale-95"
+              className="w-full sm:w-auto py-8 md:py-12 px-8 md:px-14 border-2 md:border-4 border-accent/40 hover:border-accent hover:bg-accent/5 text-xl md:text-3xl font-black text-accent-foreground rounded-[1rem] md:rounded-[1.5rem] uppercase flex items-center justify-center min-w-full sm:min-w-[280px] shadow-2xl shadow-accent/5 transition-all active:scale-95"
             >
-              <FileText className="w-10 h-10 mr-4 text-accent" />
+              <FileText className="w-8 h-8 md:w-10 h-10 mr-3 md:mr-4 text-accent" />
               Reporte
             </Button>
           </CardFooter>
         </Card>
 
-        {/* Reset Action */}
-        <div className="flex justify-center pt-10 no-print">
+        {/* Acción de Reiniciar */}
+        <div className="flex justify-center pt-6 md:pt-10 no-print">
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button 
                 variant="outline" 
-                className="border-4 border-destructive text-destructive bg-white hover:bg-destructive hover:text-white py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/10"
+                className="border-2 md:border-4 border-destructive text-destructive bg-white hover:bg-destructive hover:text-white py-6 md:py-10 px-8 md:px-16 rounded-[1.5rem] md:rounded-[2.5rem] text-[10px] md:text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/10"
                 disabled={payments.length === 0}
               >
-                <Trash2 className="w-6 h-6 mr-4" />
+                <Trash2 className="w-5 h-5 md:w-6 h-6 mr-3 md:mr-4" />
                 Reiniciar Jornada
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="rounded-[4.5rem] border-none shadow-[0_50px_120px_-30px_rgba(0,0,0,0.3)] p-16">
+            <AlertDialogContent className="rounded-[2.5rem] md:rounded-[4.5rem] border-none shadow-[0_50px_120px_-30px_rgba(0,0,0,0.3)] p-10 md:p-16 w-[90vw] md:w-full max-w-lg">
               <AlertDialogHeader>
-                <div className="mx-auto bg-primary/10 p-10 rounded-full mb-10 w-fit">
-                  <Wallet className="w-20 h-20 text-primary" />
+                <div className="mx-auto bg-primary/10 p-6 md:p-10 rounded-full mb-6 md:mb-10 w-fit">
+                  <Wallet className="w-12 h-12 md:w-20 md:w-20 text-primary" />
                 </div>
-                <AlertDialogTitle className="text-5xl font-black text-center uppercase tracking-tighter">¿Cerrar el día?</AlertDialogTitle>
-                <AlertDialogDescription className="text-2xl text-center mt-8 font-medium leading-relaxed">
+                <AlertDialogTitle className="text-3xl md:text-5xl font-black text-center uppercase tracking-tighter">¿Cerrar el día?</AlertDialogTitle>
+                <AlertDialogDescription className="text-lg md:text-2xl text-center mt-6 md:mt-8 font-medium leading-relaxed">
                   Se borrarán todos los registros. ¿Guardaste tu reporte?
                 </AlertDialogDescription>
               </AlertDialogHeader>
-              <AlertDialogFooter className="flex flex-col sm:flex-row gap-8 mt-16">
-                <AlertDialogCancel className="py-10 rounded-[2.5rem] flex-1 border-4 text-2xl font-black uppercase">Volver</AlertDialogCancel>
-                <AlertDialogAction onClick={clearDay} className="py-10 rounded-[2.5rem] flex-1 bg-primary hover:bg-primary/90 text-2xl font-black uppercase shadow-2xl shadow-primary/40">
+              <AlertDialogFooter className="flex flex-col sm:flex-row gap-4 md:gap-8 mt-10 md:mt-16">
+                <AlertDialogCancel className="py-6 md:py-10 rounded-[1.5rem] md:rounded-[2.5rem] flex-1 border-2 md:border-4 text-lg md:text-2xl font-black uppercase">Volver</AlertDialogCancel>
+                <AlertDialogAction onClick={clearDay} className="py-6 md:py-10 rounded-[1.5rem] md:rounded-[2.5rem] flex-1 bg-primary hover:bg-primary/90 text-lg md:text-2xl font-black uppercase shadow-2xl shadow-primary/40">
                   Cerrar Día
                 </AlertDialogAction>
               </AlertDialogFooter>
@@ -339,57 +338,57 @@ export default function Home() {
         </div>
       </main>
 
-      {/* Dedicated Edit Screen (Dialog) */}
+      {/* Pantalla de Edición Dedicada */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="rounded-[3.5rem] border-none shadow-3xl p-14 max-w-lg w-[95%] bg-white">
+        <DialogContent className="rounded-[2rem] md:rounded-[3.5rem] border-none shadow-3xl p-8 md:p-14 max-w-lg w-[90vw] bg-white">
           <DialogHeader>
-            <div className="mx-auto bg-accent/10 p-8 rounded-full mb-8 w-fit">
-              <Pencil className="w-16 h-16 text-accent" />
+            <div className="mx-auto bg-accent/10 p-6 md:p-8 rounded-full mb-6 md:mb-8 w-fit">
+              <Pencil className="w-10 h-10 md:w-16 md:w-16 text-accent" />
             </div>
-            <DialogTitle className="text-5xl font-black text-center uppercase tracking-tighter">Corregir</DialogTitle>
+            <DialogTitle className="text-3xl md:text-5xl font-black text-center uppercase tracking-tighter">Corregir</DialogTitle>
           </DialogHeader>
-          <div className="space-y-10 py-10">
-            <div className="space-y-4">
-              <label className="text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Nombre Cliente</label>
+          <div className="space-y-6 md:space-y-10 py-6 md:py-10">
+            <div className="space-y-3 md:space-y-4">
+              <label className="text-[10px] md:text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Nombre Cliente</label>
               <Input
                 value={editClientName}
                 onChange={(e) => setEditClientName(e.target.value)}
-                className="!text-5xl h-auto py-10 border-4 rounded-[1.5rem] font-black bg-secondary/30 px-8 focus:border-accent uppercase"
+                className="!text-3xl md:!text-5xl h-auto py-6 md:py-10 border-2 md:border-4 rounded-[1rem] md:rounded-[1.5rem] font-black bg-secondary/30 px-6 md:px-8 focus:border-accent uppercase"
               />
             </div>
-            <div className="space-y-4">
-              <label className="text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Monto Correcto</label>
+            <div className="space-y-3 md:space-y-4">
+              <label className="text-[10px] md:text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Monto Correcto</label>
               <Input
                 type="text"
                 inputMode="decimal"
                 value={editAmount}
                 onChange={handleEditAmountChange}
-                className="!text-8xl h-auto py-12 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
+                className="!text-5xl md:!text-8xl h-auto py-8 md:py-12 border-2 md:border-4 rounded-[1rem] md:rounded-[1.5rem] font-black text-primary text-center px-6 md:px-8 bg-secondary/30 focus:border-accent"
               />
             </div>
           </div>
-          <DialogFooter className="flex flex-col sm:flex-row gap-8">
+          <DialogFooter className="flex flex-col sm:flex-row gap-4 md:gap-8">
             <Button 
               variant="outline" 
               onClick={() => setIsEditDialogOpen(false)}
-              className="py-12 rounded-[1.5rem] flex-1 border-4 text-2xl font-black uppercase"
+              className="py-8 md:py-12 rounded-[1rem] md:rounded-[1.5rem] flex-1 border-2 md:border-4 text-xl md:text-2xl font-black uppercase"
             >
               Salir
             </Button>
             <Button 
               onClick={handleUpdate}
-              className="py-12 rounded-[1.5rem] flex-1 bg-accent hover:bg-accent/90 text-2xl font-black uppercase shadow-2xl shadow-accent/40"
+              className="py-8 md:py-12 rounded-[1rem] md:rounded-[1.5rem] flex-1 bg-accent hover:bg-accent/90 text-xl md:text-2xl font-black uppercase shadow-2xl shadow-accent/40"
             >
-              <Check className="w-10 h-10 mr-3" />
+              <Check className="w-8 h-8 md:w-10 md:w-10 mr-3" />
               Guardar
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <footer className="w-full mt-32 pb-20 text-center text-muted-foreground/20 no-print border-t-4 border-secondary/30 pt-16">
-        <p className="text-3xl font-black uppercase tracking-[0.5em] text-primary/30">Monto Fácil</p>
-        <p className="text-sm mt-5 font-black uppercase tracking-widest opacity-40">Pro Edition &bull; 2024</p>
+      <footer className="w-full mt-16 md:mt-32 pb-10 md:pb-20 text-center text-muted-foreground/20 no-print border-t-2 md:border-t-4 border-secondary/30 pt-10 md:pt-16">
+        <p className="text-xl md:text-3xl font-black uppercase tracking-[0.5em] text-primary/30">Monto Fácil</p>
+        <p className="text-[10px] md:text-sm mt-3 md:mt-5 font-black uppercase tracking-widest opacity-40">Pro Edition &bull; 2024</p>
       </footer>
     </div>
   );
