@@ -4,44 +4,43 @@
 
 @layer base {
   :root {
-    /* Fondo ultra limpio y moderno con un toque de azul */
-    --background: 220 33% 98%;
-    --foreground: 224 71% 4%;
+    /* Fondo ultra limpio con un toque de frescura */
+    --background: 260 30% 98%;
+    --foreground: 260 50% 5%;
     
-    /* Indigo Eléctrico - Color Principal */
-    --primary: 243 75% 59%;
+    /* Violeta Vibrante - Color de Marca Principal */
+    --primary: 270 100% 60%;
     --primary-foreground: 0 0% 100%;
     
-    /* Cian Brillante - Color de Acento para acciones */
-    --accent: 188 86% 53%;
-    --accent-foreground: 224 71% 4%;
+    /* Verde Neón / Esmeralda - Color de "Dinero" y Acento */
+    --accent: 142 100% 45%;
+    --accent-foreground: 260 50% 5%;
 
     --card: 0 0% 100%;
-    --card-foreground: 224 71% 4%;
+    --card-foreground: 260 50% 5%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71% 4%;
+    --popover-foreground: 260 50% 5%;
     
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 224 71% 4%;
+    --secondary: 260 20% 95%;
+    --secondary-foreground: 260 50% 10%;
     
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 8% 46%;
+    --muted: 260 20% 95%;
+    --muted-foreground: 260 10% 40%;
     
-    --destructive: 0 84% 60%;
+    --destructive: 0 100% 60%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 243 75% 59%;
+    --border: 260 20% 90%;
+    --input: 260 20% 90%;
+    --ring: 270 100% 60%;
     
-    --radius: 1rem;
+    --radius: 1.5rem;
   }
   
   .dark {
-    --background: 224 71% 4%;
+    --background: 260 50% 3%;
     --foreground: 210 40% 98%;
-    /* ... resto simplificado ... */
   }
 }
 
@@ -50,7 +49,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-body;
+    @apply bg-background text-foreground font-body antialiased;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-headline;

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Plus, Send, FileText, Trash2, Wallet, User, DollarSign, Pencil, Check, ReceiptText } from 'lucide-react';
+import { Plus, Send, FileText, Trash2, Wallet, User, DollarSign, Pencil, Check, ReceiptText, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -102,12 +102,15 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col items-center">
       <header className="w-full max-w-2xl mb-12 flex flex-col items-center text-center no-print">
-        <div className="bg-primary rounded-3xl p-5 mb-6 shadow-2xl shadow-primary/30 transform rotate-3">
-          <Wallet className="w-12 h-12 text-white" />
+        <div className="bg-primary rounded-[2rem] p-6 mb-4 shadow-[0_20px_60px_-15px_rgba(168,85,247,0.5)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
+          <Wallet className="w-14 h-14 text-white" />
         </div>
-        <h1 className="text-6xl font-black text-primary tracking-tighter uppercase italic leading-none">Monto Fácil</h1>
-        <div className="bg-accent/20 px-4 py-1 rounded-full mt-3">
-          <p className="text-accent-foreground text-sm font-black uppercase tracking-widest">Control Profesional de Cobros</p>
+        <h1 className="text-7xl font-black text-primary tracking-tighter uppercase italic leading-none drop-shadow-sm">Monto Fácil</h1>
+        <div className="bg-accent px-6 py-2 rounded-full mt-4 shadow-lg shadow-accent/20">
+          <p className="text-accent-foreground text-sm font-black uppercase tracking-[0.2em] flex items-center gap-2">
+            <Sparkles className="w-4 h-4" />
+            Control Financiero Total
+          </p>
         </div>
       </header>
 
@@ -120,32 +123,32 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="w-full max-w-2xl space-y-8">
+      <main className="w-full max-w-2xl space-y-10">
         {/* Input Form */}
-        <Card className="no-print border-none shadow-[0_20px_50px_rgba(0,0,0,0.1)] bg-white rounded-[2.5rem] overflow-hidden">
-          <CardHeader className="bg-accent/10 border-b border-accent/10 py-6">
-            <CardTitle className="text-2xl font-black flex items-center gap-2 uppercase text-accent-foreground/80 tracking-tight">
-              <Plus className="w-8 h-8 text-accent" />
+        <Card className="no-print border-none shadow-[0_30px_70px_-20px_rgba(0,0,0,0.15)] bg-white rounded-[3rem] overflow-hidden">
+          <CardHeader className="bg-primary/5 border-b border-primary/5 py-8">
+            <CardTitle className="text-3xl font-black flex items-center gap-3 uppercase text-primary tracking-tight">
+              <Plus className="w-10 h-10 text-primary" />
               Nuevo Registro
             </CardTitle>
           </CardHeader>
-          <CardContent className="pt-8 px-8">
-            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-8">
-              <div className="space-y-3">
-                <label className="text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-widest">
+          <CardContent className="pt-10 px-10">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-10">
+              <div className="space-y-4">
+                <label className="text-xs font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
                   <User className="w-5 h-5 text-primary" />
                   Nombre del Cliente
                 </label>
                 <Input
-                  placeholder="Ej. María García"
+                  placeholder="Ej. Juan Pérez"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                  className="text-2xl py-8 border-2 bg-muted/30 focus:bg-white focus:border-primary transition-all rounded-2xl placeholder:text-muted-foreground/30 font-bold px-6"
+                  className="text-2xl py-10 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] placeholder:text-muted-foreground/30 font-bold px-8 shadow-inner"
                   required
                 />
               </div>
-              <div className="space-y-3">
-                <label className="text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-widest">
+              <div className="space-y-4">
+                <label className="text-xs font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
                   <DollarSign className="w-5 h-5 text-primary" />
                   Monto Cobrado
                 </label>
@@ -155,81 +158,84 @@ export default function Home() {
                   placeholder="0.00"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="text-4xl py-12 border-2 bg-muted/30 focus:bg-white focus:border-primary transition-all rounded-2xl font-black text-primary text-center px-6"
+                  className="text-5xl py-14 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
                   required
                 />
               </div>
-              <Button type="submit" className="w-full py-12 text-2xl font-black rounded-2xl bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/30 transition-all active:scale-95 uppercase tracking-widest">
+              <Button type="submit" className="w-full py-14 text-3xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(168,85,247,0.4)] transition-all active:scale-95 uppercase tracking-widest">
                 Registrar Pago
               </Button>
             </form>
           </CardContent>
-          <div className="h-4 bg-accent/20"></div>
+          <div className="h-6 bg-accent/20"></div>
         </Card>
 
-        {/* Total Display */}
-        <Card className="bg-primary text-white overflow-hidden border-none shadow-2xl relative rounded-[2.5rem] py-2">
-          <div className="absolute top-0 right-0 p-6 opacity-20 transform translate-x-4 -translate-y-4">
+        {/* Total Display - RECTIFIED COMPACTNESS */}
+        <Card className="bg-primary text-white overflow-hidden border-none shadow-[0_25px_60px_-15px_rgba(168,85,247,0.4)] relative rounded-[2.5rem]">
+          <div className="absolute top-0 right-0 p-4 opacity-10 transform translate-x-4 -translate-y-4">
             <ReceiptText className="w-32 h-32" />
           </div>
           <CardContent className="p-6 text-center flex flex-col items-center relative z-10">
-            <span className="text-primary-foreground/60 text-xs uppercase tracking-[0.3em] font-black mb-2">Total Recaudado Hoy</span>
-            <div className="text-7xl font-black tabular-nums font-headline drop-shadow-2xl">
+            <span className="text-white/60 text-[10px] uppercase tracking-[0.4em] font-black mb-1">Total Recaudado Hoy</span>
+            <div className="text-7xl font-black tabular-nums tracking-tighter drop-shadow-2xl">
               ${totalAmount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
             </div>
-            <div className="mt-3 px-4 py-1 bg-white/10 rounded-full text-primary-foreground/80 text-sm font-bold uppercase tracking-tighter">
-              {payments.length} recibos activos
+            <div className="mt-2 px-5 py-1 bg-accent/100 rounded-full text-accent-foreground text-xs font-black uppercase tracking-widest shadow-lg shadow-accent/20">
+              {payments.length} Cobros registrados
             </div>
           </CardContent>
         </Card>
 
         {/* Payment List Table */}
-        <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[2.5rem]">
-          <CardHeader className="border-b-2 border-muted bg-muted/30 py-6 px-8">
-            <CardTitle className="text-xl font-black flex items-center gap-2 uppercase tracking-tight text-primary">
-              <ReceiptText className="w-7 h-7" />
+        <Card className="border-none shadow-2xl bg-white overflow-hidden rounded-[3rem]">
+          <CardHeader className="border-b-2 border-secondary bg-secondary/30 py-8 px-10">
+            <CardTitle className="text-2xl font-black flex items-center gap-3 uppercase tracking-tight text-primary">
+              <ReceiptText className="w-8 h-8" />
               Historial de Cobros
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <Table>
               <TableHeader>
-                <TableRow className="hover:bg-transparent bg-muted/20 border-b-2">
-                  <TableHead className="font-black text-xs py-5 pl-8 uppercase text-muted-foreground tracking-widest">Cliente</TableHead>
-                  <TableHead className="font-black text-xs py-5 text-right uppercase text-muted-foreground tracking-widest">Monto</TableHead>
-                  <TableHead className="font-black text-xs py-5 text-center pr-8 uppercase no-print text-muted-foreground tracking-widest w-32">Acción</TableHead>
+                <TableRow className="hover:bg-transparent bg-secondary/40 border-b-2">
+                  <TableHead className="font-black text-xs py-6 pl-10 uppercase text-muted-foreground tracking-[0.2em]">Cliente</TableHead>
+                  <TableHead className="font-black text-xs py-6 text-right uppercase text-muted-foreground tracking-[0.2em]">Monto</TableHead>
+                  <TableHead className="font-black text-xs py-6 text-center pr-10 uppercase no-print text-muted-foreground tracking-[0.2em] w-36">Acción</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {payments.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={3} className="h-72 text-center text-muted-foreground/40 text-2xl italic font-black uppercase">
-                      No hay registros
+                    <TableCell colSpan={3} className="h-80 text-center text-muted-foreground/30 text-3xl italic font-black uppercase">
+                      Vacio
                     </TableCell>
                   </TableRow>
                 ) : (
                   payments.map((p) => (
-                    <TableRow key={p.id} className="group transition-colors hover:bg-muted/30 border-b-2 border-muted/50">
-                      <TableCell className="py-8 pl-8">
+                    <TableRow key={p.id} className="group transition-colors hover:bg-secondary/20 border-b-2 border-secondary/50">
+                      <TableCell className="py-10 pl-10">
                         <div className="flex flex-col">
-                          <span className="text-2xl font-black text-foreground uppercase tracking-tighter leading-none">{p.clientName}</span>
-                          <span className="text-xs text-muted-foreground font-black mt-2 no-print opacity-50">{p.timestamp}</span>
+                          <span className="text-3xl font-black text-foreground uppercase tracking-tighter leading-none">{p.clientName}</span>
+                          <span className="text-xs text-primary font-black mt-3 no-print opacity-60 flex items-center gap-1">
+                            <Sparkles className="w-3 h-3" />
+                            {p.timestamp}
+                          </span>
                         </div>
                       </TableCell>
-                      <TableCell className="py-8 text-right">
-                        <span className="text-3xl font-black text-primary tabular-nums tracking-tighter">
+                      <TableCell className="py-10 text-right">
+                        <span className="text-4xl font-black text-primary tabular-nums tracking-tighter drop-shadow-sm">
                           ${p.amount.toFixed(2)}
                         </span>
                       </TableCell>
-                      <TableCell className="py-8 pr-8 text-right no-print">
-                        <div className="flex justify-end gap-4">
+                      <TableCell className="py-10 pr-10 text-right no-print">
+                        <div className="flex justify-end gap-5">
                           <Button 
                             variant="ghost" 
                             size="icon" 
                             onClick={() => openEditDialog(p)}
-                            className="text-primary hover:bg-primary/10 rounded-2xl h-14 w-14 border-2 border-primary/10"
+                            className="text-primary hover:bg-primary hover:text-white rounded-[1.2rem] h-16 w-16 border-4 border-primary/10 transition-all shadow-md active:scale-90"
                           >
-                            <Pencil className="w-7 h-7" />
+                            <Pencil className="w-8 h-8" />
                           </Button>
                           
                           <AlertDialog>
@@ -237,24 +243,24 @@ export default function Home() {
                               <Button 
                                 variant="ghost" 
                                 size="icon" 
-                                className="text-destructive hover:bg-destructive/10 rounded-2xl h-14 w-14 border-2 border-destructive/10"
+                                className="text-destructive hover:bg-destructive hover:text-white rounded-[1.2rem] h-16 w-16 border-4 border-destructive/10 transition-all shadow-md active:scale-90"
                               >
-                                <Trash2 className="w-7 h-7" />
+                                <Trash2 className="w-8 h-8" />
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="rounded-[3rem] border-none shadow-2xl p-10">
+                            <AlertDialogContent className="rounded-[4rem] border-none shadow-[0_40px_100px_-20px_rgba(239,68,68,0.3)] p-14">
                               <AlertDialogHeader>
-                                <div className="mx-auto bg-destructive/10 p-6 rounded-full mb-6 w-fit">
-                                  <Trash2 className="w-12 h-12 text-destructive" />
+                                <div className="mx-auto bg-destructive/10 p-8 rounded-full mb-8 w-fit">
+                                  <Trash2 className="w-16 h-16 text-destructive" />
                                 </div>
-                                <AlertDialogTitle className="text-3xl font-black text-center uppercase tracking-tighter">¿Borrar registro?</AlertDialogTitle>
-                                <AlertDialogDescription className="text-xl text-center mt-2 font-medium">
-                                  Vas a eliminar el cobro de <span className="font-black text-foreground">{p.clientName}</span> por <span className="font-black text-primary">${p.amount.toFixed(2)}</span>.
+                                <AlertDialogTitle className="text-4xl font-black text-center uppercase tracking-tighter">¿Borrar registro?</AlertDialogTitle>
+                                <AlertDialogDescription className="text-2xl text-center mt-4 font-medium">
+                                  Vas a eliminar el cobro de <span className="font-black text-foreground underline decoration-destructive decoration-4">{p.clientName}</span>.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
-                              <AlertDialogFooter className="flex flex-col sm:flex-row gap-4 mt-10">
-                                <AlertDialogCancel className="py-8 rounded-[2rem] flex-1 border-2 text-xl font-black uppercase">Cancelar</AlertDialogCancel>
-                                <AlertDialogAction onClick={() => deletePayment(p.id)} className="py-8 rounded-[2rem] flex-1 bg-destructive hover:bg-destructive/90 text-xl font-black uppercase shadow-xl shadow-destructive/30">
+                              <AlertDialogFooter className="flex flex-col sm:flex-row gap-6 mt-14">
+                                <AlertDialogCancel className="py-10 rounded-[2rem] flex-1 border-4 text-2xl font-black uppercase transition-all hover:bg-secondary">Cancelar</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deletePayment(p.id)} className="py-10 rounded-[2rem] flex-1 bg-destructive hover:bg-destructive/90 text-2xl font-black uppercase shadow-2xl shadow-destructive/40">
                                   Eliminar
                                 </AlertDialogAction>
                               </AlertDialogFooter>
@@ -268,23 +274,23 @@ export default function Home() {
               </TableBody>
             </Table>
           </CardContent>
-          <CardFooter className="flex flex-col sm:flex-row gap-6 p-10 bg-muted/10 no-print border-t border-muted justify-center">
+          <CardFooter className="flex flex-col sm:flex-row gap-8 p-14 bg-secondary/10 no-print border-t-4 border-secondary/20 justify-center">
             <Button 
               onClick={shareSummary} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="w-full sm:w-auto py-10 px-10 border-2 border-primary/20 hover:border-primary hover:bg-primary/5 text-2xl font-black text-primary rounded-2xl uppercase flex items-center justify-center min-w-[260px] shadow-xl shadow-primary/5"
+              className="w-full sm:w-auto py-12 px-14 border-4 border-primary/20 hover:border-primary hover:bg-primary/5 text-3xl font-black text-primary rounded-[1.5rem] uppercase flex items-center justify-center min-w-[280px] shadow-2xl shadow-primary/5 transition-all active:scale-95"
             >
-              <Send className="w-8 h-8 mr-3" />
+              <Send className="w-10 h-10 mr-4" />
               WhatsApp
             </Button>
             <Button 
               onClick={exportPDF} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="w-full sm:w-auto py-10 px-10 border-2 border-accent/40 hover:border-accent hover:bg-accent/5 text-2xl font-black text-accent-foreground rounded-2xl uppercase flex items-center justify-center min-w-[260px] shadow-xl shadow-accent/5"
+              className="w-full sm:w-auto py-12 px-14 border-4 border-accent/40 hover:border-accent hover:bg-accent/5 text-3xl font-black text-accent-foreground rounded-[1.5rem] uppercase flex items-center justify-center min-w-[280px] shadow-2xl shadow-accent/5 transition-all active:scale-95"
             >
-              <FileText className="w-8 h-8 mr-3 text-accent" />
+              <FileText className="w-10 h-10 mr-4 text-accent" />
               Reporte
             </Button>
           </CardFooter>
@@ -296,26 +302,26 @@ export default function Home() {
             <AlertDialogTrigger asChild>
               <Button 
                 variant="ghost" 
-                className="text-muted-foreground/40 hover:text-destructive hover:bg-destructive/10 py-8 px-12 rounded-[2rem] text-sm font-black uppercase tracking-[0.2em]"
+                className="text-muted-foreground/30 hover:text-destructive hover:bg-destructive/10 py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all"
                 disabled={payments.length === 0}
               >
-                <Trash2 className="w-5 h-5 mr-3" />
+                <Trash2 className="w-6 h-6 mr-4" />
                 Reiniciar Jornada
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="rounded-[3.5rem] border-none shadow-2xl p-14">
+            <AlertDialogContent className="rounded-[4.5rem] border-none shadow-[0_50px_120px_-30px_rgba(0,0,0,0.3)] p-16">
               <AlertDialogHeader>
-                <div className="mx-auto bg-destructive/10 p-8 rounded-full mb-8 w-fit">
-                  <Wallet className="w-16 h-16 text-destructive" />
+                <div className="mx-auto bg-primary/10 p-10 rounded-full mb-10 w-fit">
+                  <Wallet className="w-20 h-20 text-primary" />
                 </div>
-                <AlertDialogTitle className="text-4xl font-black text-center uppercase tracking-tighter">¿Cerrar el día?</AlertDialogTitle>
-                <AlertDialogDescription className="text-xl text-center mt-6 font-medium leading-relaxed">
-                  Todos los registros actuales serán borrados permanentemente. Asegúrate de haber guardado tu reporte antes de continuar.
+                <AlertDialogTitle className="text-5xl font-black text-center uppercase tracking-tighter">¿Cerrar el día?</AlertDialogTitle>
+                <AlertDialogDescription className="text-2xl text-center mt-8 font-medium leading-relaxed">
+                  Se borrarán todos los registros. ¿Guardaste tu reporte?
                 </AlertDialogDescription>
               </AlertDialogHeader>
-              <AlertDialogFooter className="flex flex-col sm:flex-row gap-6 mt-12">
-                <AlertDialogCancel className="py-8 rounded-[2.5rem] flex-1 border-2 text-xl font-black uppercase">Volver</AlertDialogCancel>
-                <AlertDialogAction onClick={clearDay} className="py-8 rounded-[2.5rem] flex-1 bg-destructive hover:bg-destructive/90 text-xl font-black uppercase shadow-2xl shadow-destructive/40">
+              <AlertDialogFooter className="flex flex-col sm:flex-row gap-8 mt-16">
+                <AlertDialogCancel className="py-10 rounded-[2.5rem] flex-1 border-4 text-2xl font-black uppercase">Volver</AlertDialogCancel>
+                <AlertDialogAction onClick={clearDay} className="py-10 rounded-[2.5rem] flex-1 bg-primary hover:bg-primary/90 text-2xl font-black uppercase shadow-2xl shadow-primary/40">
                   Cerrar Día
                 </AlertDialogAction>
               </AlertDialogFooter>
@@ -326,55 +332,55 @@ export default function Home() {
 
       {/* Dedicated Edit Screen (Dialog) */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="rounded-[3rem] border-none shadow-2xl p-12 max-w-lg w-[95%]">
+        <DialogContent className="rounded-[3.5rem] border-none shadow-3xl p-14 max-w-lg w-[95%] bg-white">
           <DialogHeader>
-            <div className="mx-auto bg-accent/10 p-6 rounded-full mb-6 w-fit">
-              <Pencil className="w-12 h-12 text-accent" />
+            <div className="mx-auto bg-accent/10 p-8 rounded-full mb-8 w-fit">
+              <Pencil className="w-16 h-16 text-accent" />
             </div>
-            <DialogTitle className="text-4xl font-black text-center uppercase tracking-tighter">Editar Registro</DialogTitle>
+            <DialogTitle className="text-5xl font-black text-center uppercase tracking-tighter">Corregir</DialogTitle>
           </DialogHeader>
-          <div className="space-y-8 py-8">
-            <div className="space-y-3">
+          <div className="space-y-10 py-10">
+            <div className="space-y-4">
               <label className="text-xs font-black ml-1 text-muted-foreground uppercase tracking-widest">Nombre Cliente</label>
               <Input
                 value={editClientName}
                 onChange={(e) => setEditClientName(e.target.value)}
-                className="text-2xl py-10 border-2 rounded-2xl font-bold bg-muted/20 px-6"
+                className="text-3xl py-12 border-4 rounded-[1.5rem] font-bold bg-secondary/30 px-8 focus:border-accent"
               />
             </div>
-            <div className="space-y-3">
+            <div className="space-y-4">
               <label className="text-xs font-black ml-1 text-muted-foreground uppercase tracking-widest">Monto Correcto</label>
               <Input
                 type="number"
                 inputMode="decimal"
                 value={editAmount}
                 onChange={(e) => setEditAmount(e.target.value)}
-                className="text-4xl py-12 border-2 rounded-2xl font-black text-primary text-center px-6"
+                className="text-6xl py-16 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
               />
             </div>
           </div>
-          <DialogFooter className="flex flex-col sm:flex-row gap-6">
+          <DialogFooter className="flex flex-col sm:flex-row gap-8">
             <Button 
               variant="outline" 
               onClick={() => setIsEditDialogOpen(false)}
-              className="py-10 rounded-2xl flex-1 border-2 text-xl font-black uppercase"
+              className="py-12 rounded-[1.5rem] flex-1 border-4 text-2xl font-black uppercase"
             >
-              Cancelar
+              Salir
             </Button>
             <Button 
               onClick={handleUpdate}
-              className="py-10 rounded-2xl flex-1 bg-accent hover:bg-accent/90 text-xl font-black uppercase shadow-2xl shadow-accent/20"
+              className="py-12 rounded-[1.5rem] flex-1 bg-accent hover:bg-accent/90 text-2xl font-black uppercase shadow-2xl shadow-accent/40"
             >
-              <Check className="w-8 h-8 mr-2" />
-              Actualizar
+              <Check className="w-10 h-10 mr-3" />
+              Guardar
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
 
-      <footer className="w-full mt-24 pb-16 text-center text-muted-foreground/30 no-print border-t border-muted/50 pt-12">
-        <p className="text-2xl font-black uppercase tracking-[0.4em] text-primary/20">Monto Fácil</p>
-        <p className="text-xs mt-3 font-black uppercase tracking-widest opacity-30">Diseño Moderno &bull; Eficiencia Total</p>
+      <footer className="w-full mt-32 pb-20 text-center text-muted-foreground/20 no-print border-t-4 border-secondary/30 pt-16">
+        <p className="text-3xl font-black uppercase tracking-[0.5em] text-primary/30">Monto Fácil</p>
+        <p className="text-sm mt-5 font-black uppercase tracking-widest opacity-40">Pro Edition &bull; 2024</p>
       </footer>
     </div>
   );
