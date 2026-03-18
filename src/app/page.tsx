@@ -301,8 +301,8 @@ export default function Home() {
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button 
-                variant="ghost" 
-                className="text-muted-foreground/30 hover:text-destructive hover:bg-destructive/10 py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all"
+                variant="outline" 
+                className="border-destructive/30 text-destructive hover:bg-destructive hover:text-white py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/5"
                 disabled={payments.length === 0}
               >
                 <Trash2 className="w-6 h-6 mr-4" />
