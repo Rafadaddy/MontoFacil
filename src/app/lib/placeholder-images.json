@@ -1,0 +1,11 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "app-icon",
+      "description": "Financial App Logo",
+      "imageUrl": "https://picsum.photos/seed/monto-facil/200/200",
+      "imageHint": "finance savings"
+    }
+  ]
+}
