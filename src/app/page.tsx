@@ -140,15 +140,15 @@ export default function Home() {
 
         {/* Total Display */}
         <Card className="bg-primary text-white overflow-hidden border-none shadow-2xl relative">
-          <div className="absolute top-0 right-0 p-4 opacity-10">
-            <Wallet className="w-32 h-32" />
+          <div className="absolute top-0 right-0 p-4 opacity-5">
+            <Wallet className="w-24 h-24" />
           </div>
-          <CardContent className="p-10 text-center flex flex-col items-center">
-            <span className="text-primary-foreground/90 text-xl uppercase tracking-widest font-black mb-4">Total Acumulado</span>
+          <CardContent className="p-6 text-center flex flex-col items-center">
+            <span className="text-primary-foreground/90 text-xl uppercase tracking-widest font-black mb-2">Total Acumulado</span>
             <div className="text-7xl font-black tabular-nums font-headline drop-shadow-md">
               ${totalAmount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
             </div>
-            <div className="mt-4 text-primary-foreground/80 text-lg font-bold">
+            <div className="mt-2 text-primary-foreground/80 text-lg font-bold">
               {payments.length} cobranzas hoy
             </div>
           </CardContent>
