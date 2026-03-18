@@ -1,50 +1,47 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* #F0F1F4 - Background */
-    --background: 225 20% 95%;
-    --foreground: 222 47% 11%;
+    /* Fondo ultra limpio y moderno con un toque de azul */
+    --background: 220 33% 98%;
+    --foreground: 224 71% 4%;
     
-    /* #5E7DBA - Primary */
-    --primary: 219 41% 55%;
+    /* Indigo Eléctrico - Color Principal */
+    --primary: 243 75% 59%;
     --primary-foreground: 0 0% 100%;
     
-    /* #26A1D9 - Accent */
-    --accent: 199 72% 50%;
-    --accent-foreground: 0 0% 100%;
+    /* Cian Brillante - Color de Acento para acciones */
+    --accent: 188 86% 53%;
+    --accent-foreground: 224 71% 4%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 224 71% 4%;
     
     --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 224 71% 4%;
     
-    --secondary: 225 20% 90%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 224 71% 4%;
     
-    --muted: 225 20% 90%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
     
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 219 41% 55%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 243 75% 59%;
     
-    --radius: 0.75rem;
+    --radius: 1rem;
   }
   
   .dark {
-    --background: 222 47% 11%;
+    --background: 224 71% 4%;
     --foreground: 210 40% 98%;
-    --primary: 219 41% 55%;
-    --primary-foreground: 0 0% 100%;
-    /* ... rest simplified for light mode focus ... */
+    /* ... resto simplificado ... */
   }
 }
 
@@ -60,7 +57,6 @@
   }
 }
 
-/* Custom styles for printing PDF-like reports */
 @media print {
   .no-print {
     display: none !important;
