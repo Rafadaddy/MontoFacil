@@ -135,7 +135,7 @@ export default function Home() {
           <CardContent className="pt-10 px-10">
             <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-10">
               <div className="space-y-4">
-                <label className="text-xs font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
+                <label className="text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
                   <User className="w-5 h-5 text-primary" />
                   Nombre del Cliente
                 </label>
@@ -143,12 +143,12 @@ export default function Home() {
                   placeholder="Ej. Juan Pérez"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                  className="text-2xl py-10 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] placeholder:text-muted-foreground/30 font-bold px-8 shadow-inner"
+                  className="text-4xl h-auto py-10 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] placeholder:text-muted-foreground/30 font-black px-8 shadow-inner uppercase"
                   required
                 />
               </div>
               <div className="space-y-4">
-                <label className="text-xs font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
+                <label className="text-sm font-black flex items-center gap-2 ml-1 text-muted-foreground uppercase tracking-[0.2em]">
                   <DollarSign className="w-5 h-5 text-primary" />
                   Monto Cobrado
                 </label>
@@ -158,11 +158,11 @@ export default function Home() {
                   placeholder="0.00"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="text-5xl py-14 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
+                  className="text-7xl h-auto py-12 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
                   required
                 />
               </div>
-              <Button type="submit" className="w-full py-14 text-3xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
+              <Button type="submit" className="w-full h-auto py-12 text-3xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
                 Registrar Pago
               </Button>
             </form>
@@ -302,7 +302,7 @@ export default function Home() {
             <AlertDialogTrigger asChild>
               <Button 
                 variant="outline" 
-                className="border-destructive/30 text-destructive hover:bg-destructive hover:text-white py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/5"
+                className="border-4 border-destructive text-destructive hover:bg-destructive hover:text-white py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/5"
                 disabled={payments.length === 0}
               >
                 <Trash2 className="w-6 h-6 mr-4" />
@@ -341,21 +341,21 @@ export default function Home() {
           </DialogHeader>
           <div className="space-y-10 py-10">
             <div className="space-y-4">
-              <label className="text-xs font-black ml-1 text-muted-foreground uppercase tracking-widest">Nombre Cliente</label>
+              <label className="text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Nombre Cliente</label>
               <Input
                 value={editClientName}
                 onChange={(e) => setEditClientName(e.target.value)}
-                className="text-3xl py-12 border-4 rounded-[1.5rem] font-bold bg-secondary/30 px-8 focus:border-accent"
+                className="text-4xl h-auto py-10 border-4 rounded-[1.5rem] font-black bg-secondary/30 px-8 focus:border-accent uppercase"
               />
             </div>
             <div className="space-y-4">
-              <label className="text-xs font-black ml-1 text-muted-foreground uppercase tracking-widest">Monto Correcto</label>
+              <label className="text-sm font-black ml-1 text-muted-foreground uppercase tracking-widest">Monto Correcto</label>
               <Input
                 type="number"
                 inputMode="decimal"
                 value={editAmount}
                 onChange={(e) => setEditAmount(e.target.value)}
-                className="text-6xl py-16 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
+                className="text-7xl h-auto py-12 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
               />
             </div>
           </div>
