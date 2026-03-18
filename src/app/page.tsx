@@ -76,49 +76,49 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col items-center">
       <header className="w-full max-w-2xl mb-8 flex flex-col items-center text-center no-print">
-        <div className="bg-primary rounded-full p-3 mb-4 shadow-lg shadow-primary/20">
-          <Wallet className="w-8 h-8 text-white" />
+        <div className="bg-primary rounded-full p-4 mb-4 shadow-lg shadow-primary/20">
+          <Wallet className="w-10 h-10 text-white" />
         </div>
-        <h1 className="text-4xl font-bold text-primary tracking-tight font-headline">Monto Fácil</h1>
-        <p className="text-muted-foreground text-lg">Control diario de cobros</p>
+        <h1 className="text-5xl font-bold text-primary tracking-tight font-headline">Monto Fácil</h1>
+        <p className="text-muted-foreground text-xl mt-2">Control diario de cobros</p>
       </header>
 
       {/* Printable Report Header */}
       <div className="print-only w-full max-w-4xl mx-auto mb-8">
-        <h1 className="text-3xl font-bold text-center border-b pb-4 mb-4">REPORTE DIARIO DE COBROS</h1>
-        <div className="flex justify-between text-lg font-medium">
+        <h1 className="text-4xl font-bold text-center border-b-2 pb-4 mb-6 uppercase">Reporte Diario de Cobros</h1>
+        <div className="flex justify-between text-xl font-semibold">
           <p>Fecha: {new Date().toLocaleDateString()}</p>
           <p>Registros: {payments.length}</p>
         </div>
       </div>
 
-      <main className="w-full max-w-2xl space-y-6">
+      <main className="w-full max-w-2xl space-y-8">
         {/* Input Form */}
-        <Card className="no-print border-none shadow-xl bg-white/80 backdrop-blur-sm">
+        <Card className="no-print border-none shadow-2xl bg-white/90 backdrop-blur-md">
           <CardHeader>
-            <CardTitle className="text-xl font-semibold flex items-center gap-2">
-              <Plus className="w-5 h-5 text-accent" />
+            <CardTitle className="text-2xl font-bold flex items-center gap-2">
+              <Plus className="w-6 h-6 text-accent" />
               Nuevo Registro
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={addPayment} className="grid grid-cols-1 gap-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium flex items-center gap-1.5 ml-1">
-                  <User className="w-4 h-4 text-primary" />
+            <form onSubmit={addPayment} className="grid grid-cols-1 gap-6">
+              <div className="space-y-3">
+                <label className="text-lg font-semibold flex items-center gap-2 ml-1">
+                  <User className="w-5 h-5 text-primary" />
                   Nombre del Cliente
                 </label>
                 <Input
                   placeholder="Ej. Juan Pérez"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                  className="text-lg py-6 border-2 focus:border-primary transition-all rounded-xl"
+                  className="text-xl py-8 border-2 focus:border-primary transition-all rounded-2xl placeholder:text-muted-foreground/50"
                   required
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-medium flex items-center gap-1.5 ml-1">
-                  <DollarSign className="w-4 h-4 text-primary" />
+              <div className="space-y-3">
+                <label className="text-lg font-semibold flex items-center gap-2 ml-1">
+                  <DollarSign className="w-5 h-5 text-primary" />
                   Monto Entregado
                 </label>
                 <Input
@@ -127,12 +127,12 @@ export default function Home() {
                   placeholder="0.00"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="text-lg py-6 border-2 focus:border-primary transition-all rounded-xl font-bold"
+                  className="text-2xl py-8 border-2 focus:border-primary transition-all rounded-2xl font-black text-primary"
                   required
                 />
               </div>
-              <Button type="submit" className="w-full py-7 text-lg font-bold rounded-xl mt-2 bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20">
-                REGISTRAR PAGO
+              <Button type="submit" className="w-full py-9 text-2xl font-black rounded-2xl mt-4 bg-accent hover:bg-accent/90 shadow-xl shadow-accent/20 transition-transform active:scale-95 uppercase tracking-wide">
+                Registrar Pago
               </Button>
             </form>
           </CardContent>
@@ -141,53 +141,55 @@ export default function Home() {
         {/* Total Display */}
         <Card className="bg-primary text-white overflow-hidden border-none shadow-2xl relative">
           <div className="absolute top-0 right-0 p-4 opacity-10">
-            <Wallet className="w-24 h-24" />
+            <Wallet className="w-32 h-32" />
           </div>
-          <CardContent className="p-8 text-center flex flex-col items-center">
-            <span className="text-primary-foreground/80 text-lg uppercase tracking-widest font-bold mb-2">Total del Día</span>
-            <div className="text-6xl font-black tabular-nums font-headline">
+          <CardContent className="p-10 text-center flex flex-col items-center">
+            <span className="text-primary-foreground/90 text-xl uppercase tracking-widest font-black mb-4">Total Acumulado</span>
+            <div className="text-7xl font-black tabular-nums font-headline drop-shadow-md">
               ${totalAmount.toLocaleString('es-MX', { minimumFractionDigits: 2 })}
             </div>
-            <div className="mt-2 text-primary-foreground/70 font-medium">
-              {payments.length} cobranzas realizadas hoy
+            <div className="mt-4 text-primary-foreground/80 text-lg font-bold">
+              {payments.length} cobranzas hoy
             </div>
           </CardContent>
         </Card>
 
         {/* Payment List Table */}
-        <Card className="border-none shadow-xl bg-white overflow-hidden">
-          <CardHeader className="border-b bg-muted/30">
-            <CardTitle className="text-lg font-bold flex items-center gap-2">
-              <Wallet className="w-5 h-5 text-primary" />
+        <Card className="border-none shadow-2xl bg-white overflow-hidden">
+          <CardHeader className="border-b-2 bg-muted/20 py-6">
+            <CardTitle className="text-xl font-black flex items-center gap-2 uppercase tracking-tighter">
+              <Wallet className="w-6 h-6 text-primary" />
               Detalle de Cobros
             </CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <Table>
               <TableHeader>
-                <TableRow className="hover:bg-transparent">
-                  <TableHead className="font-bold text-base py-4 pl-6">Cliente</TableHead>
-                  <TableHead className="font-bold text-base py-4 text-right pr-6">Monto</TableHead>
+                <TableRow className="hover:bg-transparent bg-muted/10">
+                  <TableHead className="font-black text-lg py-5 pl-8 uppercase">Cliente</TableHead>
+                  <TableHead className="font-black text-lg py-5 text-right pr-8 uppercase">Monto</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {payments.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={2} className="h-48 text-center text-muted-foreground text-lg italic">
+                    <TableCell colSpan={2} className="h-64 text-center text-muted-foreground text-2xl italic font-medium">
                       No hay registros todavía
                     </TableCell>
                   </TableRow>
                 ) : (
                   payments.map((p) => (
-                    <TableRow key={p.id} className="group transition-colors">
-                      <TableCell className="py-5 pl-6 font-medium text-lg">
+                    <TableRow key={p.id} className="group transition-colors hover:bg-muted/5 border-b">
+                      <TableCell className="py-6 pl-8">
                         <div className="flex flex-col">
-                          <span>{p.clientName}</span>
-                          <span className="text-xs text-muted-foreground no-print">{p.timestamp}</span>
+                          <span className="text-xl font-bold text-foreground">{p.clientName}</span>
+                          <span className="text-sm text-muted-foreground font-medium no-print">{p.timestamp}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="py-5 pr-6 text-right text-xl font-bold text-primary">
-                        ${p.amount.toFixed(2)}
+                      <TableCell className="py-6 pr-8 text-right">
+                        <span className="text-2xl font-black text-primary">
+                          ${p.amount.toFixed(2)}
+                        </span>
                       </TableCell>
                     </TableRow>
                   ))
@@ -195,52 +197,52 @@ export default function Home() {
               </TableBody>
             </Table>
           </CardContent>
-          <CardFooter className="flex flex-wrap gap-3 p-6 bg-muted/10 no-print">
+          <CardFooter className="flex flex-wrap gap-4 p-8 bg-muted/5 no-print">
             <Button 
               onClick={shareSummary} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="flex-1 min-w-[140px] py-6 border-2 border-primary/20 hover:border-primary/50 hover:bg-primary/5 font-semibold text-primary"
+              className="flex-1 min-w-[180px] py-8 border-2 border-primary/30 hover:border-primary hover:bg-primary/5 text-xl font-bold text-primary rounded-2xl"
             >
-              <Send className="w-5 h-5 mr-2" />
+              <Send className="w-6 h-6 mr-3" />
               WhatsApp
             </Button>
             <Button 
               onClick={exportPDF} 
               disabled={payments.length === 0}
               variant="outline" 
-              className="flex-1 min-w-[140px] py-6 border-2 border-accent/20 hover:border-accent/50 hover:bg-accent/5 font-semibold text-accent"
+              className="flex-1 min-w-[180px] py-8 border-2 border-accent/30 hover:border-accent hover:bg-accent/5 text-xl font-bold text-accent rounded-2xl"
             >
-              <FileText className="w-5 h-5 mr-2" />
-              PDF / Imprimir
+              <FileText className="w-6 h-6 mr-3" />
+              Imprimir
             </Button>
           </CardFooter>
         </Card>
 
         {/* Reset Action */}
-        <div className="flex justify-center pt-4 no-print">
+        <div className="flex justify-center pt-6 no-print">
           <AlertDialog>
             <AlertDialogTrigger asChild>
               <Button 
                 variant="ghost" 
-                className="text-muted-foreground hover:text-destructive hover:bg-destructive/5 py-6 px-8 rounded-xl font-medium"
+                className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 py-7 px-10 rounded-2xl text-lg font-bold"
                 disabled={payments.length === 0}
               >
-                <Trash2 className="w-4 h-4 mr-2" />
-                Limpiar Pantalla (Cierre de Día)
+                <Trash2 className="w-5 h-5 mr-3" />
+                Limpiar Cierre de Día
               </Button>
             </AlertDialogTrigger>
-            <AlertDialogContent className="rounded-2xl border-none shadow-2xl">
+            <AlertDialogContent className="rounded-[2rem] border-none shadow-2xl p-8">
               <AlertDialogHeader>
-                <AlertDialogTitle className="text-2xl font-bold">¿Limpiar registros?</AlertDialogTitle>
-                <AlertDialogDescription className="text-lg">
-                  Se borrarán todos los datos de hoy. Asegúrate de haber compartido el resumen o guardado el reporte antes de continuar.
+                <AlertDialogTitle className="text-3xl font-black text-center">¿Estás seguro?</AlertDialogTitle>
+                <AlertDialogDescription className="text-xl text-center mt-2">
+                  Se borrarán todos los datos registrados. Asegúrate de haber compartido el resumen antes.
                 </AlertDialogDescription>
               </AlertDialogHeader>
-              <AlertDialogFooter className="flex gap-2">
-                <AlertDialogCancel className="py-6 rounded-xl flex-1 border-2 font-semibold">Cancelar</AlertDialogCancel>
-                <AlertDialogAction onClick={clearDay} className="py-6 rounded-xl flex-1 bg-destructive hover:bg-destructive/90 font-semibold shadow-lg shadow-destructive/20">
-                  Confirmar Borrado
+              <AlertDialogFooter className="flex flex-col sm:flex-row gap-3 mt-6">
+                <AlertDialogCancel className="py-7 rounded-2xl flex-1 border-2 text-xl font-bold">Volver</AlertDialogCancel>
+                <AlertDialogAction onClick={clearDay} className="py-7 rounded-2xl flex-1 bg-destructive hover:bg-destructive/90 text-xl font-bold shadow-lg shadow-destructive/20">
+                  Sí, borrar todo
                 </AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
@@ -248,9 +250,9 @@ export default function Home() {
         </div>
       </main>
 
-      <footer className="w-full mt-12 pb-8 text-center text-muted-foreground no-print">
-        <p className="text-sm font-medium">Monto Fácil &copy; {new Date().getFullYear()}</p>
-        <p className="text-xs mt-1">Herramienta rápida para cobradores eficientes</p>
+      <footer className="w-full mt-16 pb-12 text-center text-muted-foreground no-print border-t pt-8">
+        <p className="text-lg font-bold">Monto Fácil &copy; {new Date().getFullYear()}</p>
+        <p className="text-sm mt-2 font-medium">Diseñado para la eficiencia en campo</p>
       </footer>
     </div>
   );
