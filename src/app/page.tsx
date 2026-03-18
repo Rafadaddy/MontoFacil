@@ -102,9 +102,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background p-4 md:p-8 flex flex-col items-center">
       <header className="w-full max-w-2xl mb-12 flex flex-col items-center text-center no-print">
-        <div className="bg-primary rounded-[2rem] p-6 mb-4 shadow-[0_20px_60px_-15px_rgba(37,99,235,0.5)] transform -rotate-3 hover:rotate-0 transition-transform duration-500">
-          <Wallet className="w-14 h-14 text-white" />
-        </div>
         <h1 className="text-7xl font-black text-primary tracking-tighter uppercase italic leading-none drop-shadow-sm">Monto Fácil</h1>
         <div className="bg-accent px-6 py-2 rounded-full mt-4 shadow-lg shadow-accent/20">
           <p className="text-accent-foreground text-sm font-black uppercase tracking-[0.2em] flex items-center gap-2">
@@ -113,15 +110,6 @@ export default function Home() {
           </p>
         </div>
       </header>
-
-      {/* Printable Report Header */}
-      <div className="print-only w-full max-w-4xl mx-auto mb-8">
-        <h1 className="text-4xl font-bold text-center border-b-2 pb-4 mb-6 uppercase">Reporte Diario de Cobros</h1>
-        <div className="flex justify-between text-xl font-semibold">
-          <p>Fecha: {new Date().toLocaleDateString()}</p>
-          <p>Registros: {payments.length}</p>
-        </div>
-      </div>
 
       <main className="w-full max-w-2xl space-y-10">
         {/* Input Form */}
@@ -143,7 +131,7 @@ export default function Home() {
                   placeholder="Ej. Juan Pérez"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
-                  className="text-4xl h-auto py-10 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] placeholder:text-muted-foreground/30 font-black px-8 shadow-inner uppercase"
+                  className="!text-5xl h-auto py-12 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] placeholder:text-muted-foreground/20 font-black px-8 shadow-inner uppercase"
                   required
                 />
               </div>
@@ -158,11 +146,11 @@ export default function Home() {
                   placeholder="0.00"
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
-                  className="text-7xl h-auto py-12 border-2 bg-secondary/50 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
+                  className="!text-8xl h-auto py-14 border-2 bg-secondary/30 focus:bg-white focus:border-primary transition-all rounded-[1.5rem] font-black text-primary text-center px-8 shadow-inner"
                   required
                 />
               </div>
-              <Button type="submit" className="w-full h-auto py-12 text-3xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
+              <Button type="submit" className="w-full h-auto py-12 text-4xl font-black rounded-[1.5rem] bg-primary hover:bg-primary/90 shadow-[0_15px_40px_-10px_rgba(37,99,235,0.4)] transition-all active:scale-95 uppercase tracking-widest">
                 Registrar Pago
               </Button>
             </form>
@@ -172,9 +160,6 @@ export default function Home() {
 
         {/* Total Display */}
         <Card className="bg-primary text-white overflow-hidden border-none shadow-[0_25px_60px_-15px_rgba(37,99,235,0.4)] relative rounded-[2.5rem]">
-          <div className="absolute top-0 right-0 p-4 opacity-10 transform translate-x-4 -translate-y-4">
-            <ReceiptText className="w-32 h-32" />
-          </div>
           <CardContent className="p-6 text-center flex flex-col items-center relative z-10">
             <span className="text-white/60 text-[10px] uppercase tracking-[0.4em] font-black mb-1">Total Recaudado Hoy</span>
             <div className="text-7xl font-black tabular-nums tracking-tighter drop-shadow-2xl">
@@ -215,7 +200,7 @@ export default function Home() {
                     <TableRow key={p.id} className="group transition-colors hover:bg-secondary/20 border-b-2 border-secondary/50">
                       <TableCell className="py-10 pl-10">
                         <div className="flex flex-col">
-                          <span className="text-3xl font-black text-foreground uppercase tracking-tighter leading-none">{p.clientName}</span>
+                          <span className="text-4xl font-black text-foreground uppercase tracking-tighter leading-none">{p.clientName}</span>
                           <span className="text-xs text-primary font-black mt-3 no-print opacity-60 flex items-center gap-1">
                             <Sparkles className="w-3 h-3" />
                             {p.timestamp}
@@ -223,7 +208,7 @@ export default function Home() {
                         </div>
                       </TableCell>
                       <TableCell className="py-10 text-right">
-                        <span className="text-4xl font-black text-primary tabular-nums tracking-tighter drop-shadow-sm">
+                        <span className="text-5xl font-black text-primary tabular-nums tracking-tighter drop-shadow-sm">
                           ${p.amount.toFixed(2)}
                         </span>
                       </TableCell>
@@ -302,7 +287,7 @@ export default function Home() {
             <AlertDialogTrigger asChild>
               <Button 
                 variant="outline" 
-                className="border-4 border-destructive text-destructive hover:bg-destructive hover:text-white py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/5"
+                className="border-4 border-destructive text-destructive bg-white hover:bg-destructive hover:text-white py-10 px-16 rounded-[2.5rem] text-sm font-black uppercase tracking-[0.4em] transition-all shadow-xl shadow-destructive/10"
                 disabled={payments.length === 0}
               >
                 <Trash2 className="w-6 h-6 mr-4" />
@@ -345,7 +330,7 @@ export default function Home() {
               <Input
                 value={editClientName}
                 onChange={(e) => setEditClientName(e.target.value)}
-                className="text-4xl h-auto py-10 border-4 rounded-[1.5rem] font-black bg-secondary/30 px-8 focus:border-accent uppercase"
+                className="!text-5xl h-auto py-10 border-4 rounded-[1.5rem] font-black bg-secondary/30 px-8 focus:border-accent uppercase"
               />
             </div>
             <div className="space-y-4">
@@ -355,7 +340,7 @@ export default function Home() {
                 inputMode="decimal"
                 value={editAmount}
                 onChange={(e) => setEditAmount(e.target.value)}
-                className="text-7xl h-auto py-12 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
+                className="!text-8xl h-auto py-12 border-4 rounded-[1.5rem] font-black text-primary text-center px-8 bg-secondary/30 focus:border-accent"
               />
             </div>
           </div>
