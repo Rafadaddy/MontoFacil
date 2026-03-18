@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -44,14 +43,9 @@ export default function Home() {
 
   // Función para formatear el número con comas mientras se escribe
   const formatCurrencyInput = (value: string) => {
-    // Eliminar todo lo que no sea número o punto
     const cleanValue = value.replace(/[^0-9.]/g, '');
     const parts = cleanValue.split('.');
-    
-    // Formatear la parte entera con comas
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    
-    // Unir con la parte decimal si existe (solo permitimos un punto)
     return parts.length > 2 ? parts[0] + '.' + parts[1] : parts.join('.');
   };
 
@@ -69,7 +63,6 @@ export default function Home() {
     e.preventDefault();
     if (!clientName.trim() || !amount) return;
 
-    // Limpiar comas para guardar como número puro
     const numericAmount = parseFloat(amount.replace(/,/g, ''));
 
     const newPayment: Payment = {
@@ -86,7 +79,6 @@ export default function Home() {
   const openEditDialog = (payment: Payment) => {
     setEditingPayment(payment);
     setEditClientName(payment.clientName);
-    // Cargar con formato de comas
     setEditAmount(payment.amount.toLocaleString('es-MX', { minimumFractionDigits: 0, maximumFractionDigits: 2 }));
     setIsEditDialogOpen(true);
   };
@@ -232,9 +224,9 @@ export default function Home() {
                     <TableRow key={p.id} className="group transition-colors hover:bg-secondary/20 border-b-2 border-secondary/50">
                       <TableCell className="py-10 pl-10">
                         <div className="flex flex-col">
-                          <span className="text-4xl font-black text-foreground uppercase tracking-tighter leading-none">{p.clientName}</span>
-                          <span className="text-xs text-primary font-black mt-3 no-print opacity-60 flex items-center gap-1">
-                            <Sparkles className="w-3 h-3" />
+                          <span className="text-2xl font-black text-foreground uppercase tracking-tight leading-none">{p.clientName}</span>
+                          <span className="text-sm text-primary font-bold mt-2 no-print opacity-80 flex items-center gap-1">
+                            <Sparkles className="w-4 h-4" />
                             {p.timestamp}
                           </span>
                         </div>
