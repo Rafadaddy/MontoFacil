@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Plus, Send, FileText, Trash2, Wallet, User, DollarSign } from 'lucide-react';
+import { Plus, Send, FileText, Trash2, Wallet, User, DollarSign, Pencil, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card';
@@ -22,6 +22,7 @@ export default function Home() {
   const [clientName, setClientName] = useState('');
   const [amount, setAmount] = useState('');
   const [mounted, setMounted] = useState(false);
+  const [editingId, setEditingId] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -37,20 +38,46 @@ export default function Home() {
     }
   }, [payments, mounted]);
 
-  const addPayment = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!clientName.trim() || !amount) return;
 
-    const newPayment: Payment = {
-      id: Math.random().toString(36).substr(2, 9),
-      clientName: clientName.trim(),
-      amount: parseFloat(amount),
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
-
-    setPayments([...payments, newPayment]);
+    if (editingId) {
+      setPayments(payments.map(p => 
+        p.id === editingId 
+          ? { ...p, clientName: clientName.trim(), amount: parseFloat(amount) } 
+          : p
+      ));
+      setEditingId(null);
+    } else {
+      const newPayment: Payment = {
+        id: Math.random().toString(36).substr(2, 9),
+        clientName: clientName.trim(),
+        amount: parseFloat(amount),
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      };
+      setPayments([...payments, newPayment]);
+    }
     setClientName('');
     setAmount('');
+  };
+
+  const startEditing = (payment: Payment) => {
+    setClientName(payment.clientName);
+    setAmount(payment.amount.toString());
+    setEditingId(payment.id);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const cancelEditing = () => {
+    setEditingId(null);
+    setClientName('');
+    setAmount('');
+  };
+
+  const deletePayment = (id: string) => {
+    setPayments(payments.filter(p => p.id !== id));
+    if (editingId === id) cancelEditing();
   };
 
   const totalAmount = payments.reduce((sum, p) => sum + p.amount, 0);
@@ -97,12 +124,12 @@ export default function Home() {
         <Card className="no-print border-none shadow-2xl bg-white/90 backdrop-blur-md">
           <CardHeader>
             <CardTitle className="text-2xl font-bold flex items-center gap-2">
-              <Plus className="w-6 h-6 text-accent" />
-              Nuevo Registro
+              {editingId ? <Pencil className="w-6 h-6 text-accent" /> : <Plus className="w-6 h-6 text-accent" />}
+              {editingId ? 'Editar Registro' : 'Nuevo Registro'}
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <form onSubmit={addPayment} className="grid grid-cols-1 gap-6">
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
               <div className="space-y-3">
                 <label className="text-lg font-semibold flex items-center gap-2 ml-1">
                   <User className="w-5 h-5 text-primary" />
@@ -131,9 +158,21 @@ export default function Home() {
                   required
                 />
               </div>
-              <Button type="submit" className="w-full py-9 text-2xl font-black rounded-2xl mt-4 bg-accent hover:bg-accent/90 shadow-xl shadow-accent/20 transition-transform active:scale-95 uppercase tracking-wide">
-                Registrar Pago
-              </Button>
+              <div className="flex gap-4">
+                <Button type="submit" className="flex-1 py-9 text-2xl font-black rounded-2xl bg-accent hover:bg-accent/90 shadow-xl shadow-accent/20 transition-transform active:scale-95 uppercase tracking-wide">
+                  {editingId ? 'Actualizar' : 'Registrar Pago'}
+                </Button>
+                {editingId && (
+                  <Button 
+                    type="button" 
+                    onClick={cancelEditing}
+                    variant="outline" 
+                    className="py-9 px-6 text-xl font-bold rounded-2xl border-2 hover:bg-muted"
+                  >
+                    <X className="w-6 h-6" />
+                  </Button>
+                )}
+              </div>
             </form>
           </CardContent>
         </Card>
@@ -167,13 +206,14 @@ export default function Home() {
               <TableHeader>
                 <TableRow className="hover:bg-transparent bg-muted/10">
                   <TableHead className="font-black text-lg py-5 pl-8 uppercase">Cliente</TableHead>
-                  <TableHead className="font-black text-lg py-5 text-right pr-8 uppercase">Monto</TableHead>
+                  <TableHead className="font-black text-lg py-5 text-right uppercase">Monto</TableHead>
+                  <TableHead className="font-black text-lg py-5 text-center pr-8 uppercase no-print">Acciones</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
                 {payments.length === 0 ? (
                   <TableRow>
-                    <TableCell colSpan={2} className="h-64 text-center text-muted-foreground text-2xl italic font-medium">
+                    <TableCell colSpan={3} className="h-64 text-center text-muted-foreground text-2xl italic font-medium">
                       No hay registros todavía
                     </TableCell>
                   </TableRow>
@@ -186,10 +226,32 @@ export default function Home() {
                           <span className="text-sm text-muted-foreground font-medium no-print">{p.timestamp}</span>
                         </div>
                       </TableCell>
-                      <TableCell className="py-6 pr-8 text-right">
+                      <TableCell className="py-6 text-right">
                         <span className="text-2xl font-black text-primary">
                           ${p.amount.toFixed(2)}
                         </span>
+                      </TableCell>
+                      <TableCell className="py-6 pr-8 text-right no-print">
+                        <div className="flex justify-end gap-2">
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            onClick={() => startEditing(p)}
+                            className="text-primary hover:bg-primary/10 rounded-xl h-12 w-12"
+                            title="Editar"
+                          >
+                            <Pencil className="w-6 h-6" />
+                          </Button>
+                          <Button 
+                            variant="ghost" 
+                            size="icon" 
+                            onClick={() => deletePayment(p.id)}
+                            className="text-destructive hover:bg-destructive/10 rounded-xl h-12 w-12"
+                            title="Eliminar"
+                          >
+                            <Trash2 className="w-6 h-6" />
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))
