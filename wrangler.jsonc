@@ -1,1 +1,1 @@
-{"name": "your-project-name", "compatibility_date": "2026-03-19", "compatibility_flags": [], "main": "main.js", "assets": {"directory": ".open-next/assets"}}
+{"name": "montofacil", "compatibility_date": "2025-09-27", "compatibility_flags": ["nodejs_compat"], "main": ".open-next/worker.js", "assets": {"directory": ".open-next/assets"}}
