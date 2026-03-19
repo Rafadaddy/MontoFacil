@@ -1,0 +1,8 @@
+name = "montofacil"
+type = "javascript"
+compatibility_date = "2025-09-27"
+compatibility_flags = ["nodejs_compat"]
+[build]
+command = "npm run build && opennextjs-cloudflare build"
+[env.production]
+route = "montofacil.pages.dev"
